@@ -113,6 +113,15 @@ export async function setSocialReaction(
 }
 
 // Comments
+export function subscribeToCommentCount(
+  postId: string,
+  callback: (count: number) => void,
+): Unsubscribe {
+  return onSnapshot(collection(db, SOCIAL_COL, postId, 'comments'), (snap) => {
+    callback(snap.size);
+  });
+}
+
 export function subscribeToComments(
   postId: string,
   callback: (comments: SocialComment[]) => void,

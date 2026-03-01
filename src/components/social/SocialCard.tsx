@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MoreHorizontal, Pencil, Trash2, ShieldOff, ShieldAlert, Flag, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { deleteSocialPost, toggleBlockSocialPost } from '../../api/socialApi';
+import { deleteSocialPost, toggleBlockSocialPost, subscribeToCommentCount } from '../../api/socialApi';
 import { subscribeToSocialReactions, setSocialReaction } from '../../api/socialApi';
 import type { SocialPost } from '../../api/types';
 import EmojiReactions from '../posts/EmojiReactions';
@@ -18,6 +18,11 @@ export default function SocialCard({ post, onEdit }: SocialCardProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [commentCount, setCommentCount] = useState(0);
+
+  useEffect(() => {
+    return subscribeToCommentCount(post.id, setCommentCount);
+  }, [post.id]);
 
   const isOwner = user?.uid === post.authorUid;
   const isAdmin = user?.role === 'admin';
@@ -123,7 +128,7 @@ export default function SocialCard({ post, onEdit }: SocialCardProps) {
             }`}
           >
             <MessageCircle className="w-3.5 h-3.5" />
-            Comment
+            {commentCount > 0 ? commentCount : 'Comment'}
           </button>
         </div>
         {user && !isOwner && (

@@ -3,22 +3,38 @@ import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function LoginPage() {
-  const { signIn } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const { signInWithGoogle, signInWithMicrosoft } = useAuth();
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [microsoftLoading, setMicrosoftLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSignIn = async () => {
-    setLoading(true);
+  const handleGoogle = async () => {
+    setGoogleLoading(true);
     setError('');
     try {
-      await signIn();
+      await signInWithGoogle();
     } catch (err) {
       setError('Sign-in failed. Please try again.');
       console.error(err);
     } finally {
-      setLoading(false);
+      setGoogleLoading(false);
     }
   };
+
+  const handleMicrosoft = async () => {
+    setMicrosoftLoading(true);
+    setError('');
+    try {
+      await signInWithMicrosoft();
+    } catch (err) {
+      setError('Sign-in failed. Please try again.');
+      console.error(err);
+    } finally {
+      setMicrosoftLoading(false);
+    }
+  };
+
+  const anyLoading = googleLoading || microsoftLoading;
 
   return (
     <div className="min-h-screen bg-neu flex flex-col items-center justify-center px-6">
@@ -38,15 +54,15 @@ export default function LoginPage() {
             Welcome
           </h2>
           <p className="text-sm text-slate-500 text-center mb-6">
-            Sign in with your university Google account
+            Sign in with your university account
           </p>
 
           <button
-            onClick={handleSignIn}
-            disabled={loading}
+            onClick={handleGoogle}
+            disabled={anyLoading}
             className="w-full flex items-center justify-center gap-3 bg-neu rounded-xl px-4 py-3 text-sm font-medium text-slate-700 neu-sm hover:neu-inset-sm transition-all disabled:opacity-50"
           >
-            {loading ? (
+            {googleLoading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -56,7 +72,31 @@ export default function LoginPage() {
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
               </svg>
             )}
-            {loading ? 'Signing in...' : 'Sign in with Google'}
+            {googleLoading ? 'Signing in...' : 'Sign in with Google'}
+          </button>
+
+          <div className="flex items-center gap-3 my-4">
+            <div className="flex-1 h-px bg-slate-200" />
+            <span className="text-xs text-slate-400">or</span>
+            <div className="flex-1 h-px bg-slate-200" />
+          </div>
+
+          <button
+            onClick={handleMicrosoft}
+            disabled={anyLoading}
+            className="w-full flex items-center justify-center gap-3 bg-neu rounded-xl px-4 py-3 text-sm font-medium text-slate-700 neu-sm hover:neu-inset-sm transition-all disabled:opacity-50"
+          >
+            {microsoftLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <svg className="w-5 h-5" viewBox="0 0 21 21">
+                <rect x="1" y="1" width="9" height="9" fill="#F25022" />
+                <rect x="11" y="1" width="9" height="9" fill="#7FBA00" />
+                <rect x="1" y="11" width="9" height="9" fill="#00A4EF" />
+                <rect x="11" y="11" width="9" height="9" fill="#FFB900" />
+              </svg>
+            )}
+            {microsoftLoading ? 'Signing in...' : 'Sign in with Microsoft'}
           </button>
 
           {error && (

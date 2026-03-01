@@ -1,5 +1,6 @@
 import {
   GoogleAuthProvider,
+  OAuthProvider,
   signInWithPopup,
   signOut as firebaseSignOut,
   onAuthStateChanged,
@@ -10,10 +11,16 @@ import { auth, db } from './firebase/config';
 import type { AppUser, UserRole } from './types';
 
 const ADMIN_EMAIL = 'gauravsharrma00@gmail.com';
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const microsoftProvider = new OAuthProvider('microsoft.com');
 
 export async function signInWithGoogle(): Promise<AppUser> {
-  const result = await signInWithPopup(auth, provider);
+  const result = await signInWithPopup(auth, googleProvider);
+  return ensureUserDoc(result.user);
+}
+
+export async function signInWithMicrosoft(): Promise<AppUser> {
+  const result = await signInWithPopup(auth, microsoftProvider);
   return ensureUserDoc(result.user);
 }
 
