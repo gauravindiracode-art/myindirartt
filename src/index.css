@@ -28,6 +28,26 @@
   --color-gold-400: #ffd426;
   --color-gold-500: #ffc605;
   --color-gold: #FFC605;
+
+  --color-neu: #e0e5ec;
+  --color-neu-dark: #b8bec7;
+  --color-neu-light: #ffffff;
+}
+
+@utility neu {
+  box-shadow: 5px 5px 10px #b8bec7, -5px -5px 10px #ffffff;
+}
+
+@utility neu-sm {
+  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
+}
+
+@utility neu-inset {
+  box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
+}
+
+@utility neu-inset-sm {
+  box-shadow: inset 2px 2px 4px #b8bec7, inset -2px -2px 4px #ffffff;
 }
 
 html, body, #root {

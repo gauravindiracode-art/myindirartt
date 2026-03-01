@@ -22,7 +22,7 @@ export default function PostCard({ post, onClick }: PostCardProps) {
   return (
     <article
       onClick={onClick}
-      className={`bg-white border border-slate-100 rounded-xl p-4 shadow-sm${onClick ? ' cursor-pointer hover:border-primary-300 transition-colors' : ''}`}
+      className={`bg-neu rounded-2xl p-4 neu${onClick ? ' cursor-pointer hover:neu-inset transition-all' : ''}`}
     >
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
@@ -45,7 +45,7 @@ export default function PostCard({ post, onClick }: PostCardProps) {
       <h3 className="text-base font-semibold text-slate-900 mb-1.5">{post.title}</h3>
 
       {/* Reactions */}
-      <div className="mt-3 pt-3 border-t border-slate-100">
+      <div className="mt-3 pt-3 border-t border-neu-dark/20">
         <EmojiReactions postId={post.id} />
       </div>
     </article>

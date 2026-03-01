@@ -27,7 +27,7 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
         Back to posts
       </button>
 
-      <div className="bg-white border border-slate-100 rounded-xl p-5 md:p-8 shadow-sm">
+      <div className="bg-neu rounded-2xl p-5 md:p-8 neu">
         {/* Type badge */}
         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${config.color}`}>
           <Icon className="w-3 h-3" />
@@ -54,7 +54,7 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
         </div>
 
         {/* Emoji Reactions */}
-        <div className="mt-6 pt-4 border-t border-slate-100">
+        <div className="mt-6 pt-4 border-t border-neu-dark/20">
           <EmojiReactions postId={post.id} />
         </div>
       </div>

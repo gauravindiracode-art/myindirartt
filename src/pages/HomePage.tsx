@@ -27,7 +27,7 @@ export default function HomePage() {
   return (
     <div className="px-4 md:px-6 py-4 md:py-6 space-y-5 md:space-y-6">
       {/* Welcome */}
-      <div className="bg-gradient-to-r from-primary to-primary-700 rounded-2xl p-5 md:p-8 text-white">
+      <div className="bg-gradient-to-r from-primary to-primary-700 rounded-2xl p-5 md:p-8 text-white neu">
         <p className="text-sm md:text-base text-primary-200">{greeting()}</p>
         <h2 className="text-xl md:text-2xl font-bold mt-0.5">{user?.displayName}</h2>
         <div className="mt-2 inline-block px-2.5 py-0.5 bg-white/15 rounded-full text-xs font-medium capitalize">
@@ -40,26 +40,26 @@ export default function HomePage() {
         <QuickLink
           icon={<MessageSquare className="w-5 h-5" />}
           label="Posts"
-          color="bg-primary-50 text-primary"
+          color="text-primary"
           onClick={() => navigate('/posts')}
         />
         <QuickLink
           icon={<Users2 className="w-5 h-5" />}
           label="Social"
-          color="bg-purple-50 text-purple-700"
+          color="text-purple-700"
           onClick={() => navigate('/social')}
         />
         <QuickLink
           icon={<FileText className="w-5 h-5" />}
           label="Policies"
-          color="bg-teal-50 text-teal"
+          color="text-teal"
           onClick={() => navigate('/policies')}
         />
         {user?.role === 'student' && (
           <QuickLink
             icon={<GraduationCap className="w-5 h-5" />}
             label="Academics"
-            color="bg-gold-50 text-amber-700"
+            color="text-amber-700"
             onClick={() => navigate('/academics')}
           />
         )}
@@ -102,7 +102,7 @@ function QuickLink({
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center gap-1.5 p-4 rounded-xl ${color} hover:opacity-80 transition-opacity`}
+      className={`flex flex-col items-center gap-1.5 p-4 rounded-xl bg-neu ${color} neu-sm hover:neu-inset-sm transition-all active:neu-inset-sm`}
     >
       {icon}
       <span className="text-xs font-medium">{label}</span>

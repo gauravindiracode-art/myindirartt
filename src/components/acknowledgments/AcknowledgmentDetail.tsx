@@ -42,7 +42,7 @@ export default function AcknowledgmentDetail({ post, onBack }: AcknowledgmentDet
         Back
       </button>
 
-      <div className="bg-white border border-slate-100 rounded-xl p-5 md:p-8 shadow-sm">
+      <div className="bg-neu rounded-2xl p-5 md:p-8 neu">
         <span className="px-2 py-0.5 bg-amber-50 text-amber-700 rounded-full text-[10px] font-medium capitalize">
           {post.targetAudience === 'both' ? 'Everyone' : `${post.targetAudience}s`}
         </span>
@@ -56,14 +56,14 @@ export default function AcknowledgmentDetail({ post, onBack }: AcknowledgmentDet
           {post.content}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-slate-100 space-y-3">
+        <div className="mt-6 pt-4 border-t border-neu-dark/20 space-y-3">
           <button
             onClick={handleAcknowledge}
             disabled={hasAcked || submitting}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+            className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
               hasAcked
-                ? 'bg-green-50 text-green-700 border border-green-200'
-                : 'bg-primary text-white hover:bg-primary-800'
+                ? 'bg-green-50 text-green-700 neu-inset-sm'
+                : 'bg-primary text-white neu-sm hover:bg-primary-800'
             } disabled:opacity-70`}
           >
             <Check className="w-4 h-4" />

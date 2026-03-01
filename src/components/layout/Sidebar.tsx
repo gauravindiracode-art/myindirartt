@@ -33,10 +33,10 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="hidden md:flex flex-col w-60 bg-white border-r border-slate-200 shrink-0">
+    <aside className="hidden md:flex flex-col w-60 bg-neu shrink-0">
       {/* Branding */}
-      <div className="flex items-center gap-2.5 px-5 h-16 border-b border-slate-100">
-        <div className="w-9 h-9 bg-gold rounded-lg flex items-center justify-center">
+      <div className="flex items-center gap-2.5 px-5 h-16">
+        <div className="w-9 h-9 bg-gold rounded-lg flex items-center justify-center neu-sm">
           <span className="text-primary font-bold text-sm">IU</span>
         </div>
         <div>
@@ -46,15 +46,15 @@ export default function Sidebar() {
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-3 py-4 space-y-1.5">
         {visibleItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
               isActive(item.to)
-                ? 'bg-primary-50 text-primary'
-                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+                ? 'bg-neu neu-inset-sm text-primary'
+                : 'text-slate-500 hover:text-slate-700 hover:neu-sm'
             }`}
           >
             {item.icon}
@@ -65,8 +65,8 @@ export default function Sidebar() {
 
       {/* User */}
       {user && (
-        <div className="px-4 py-3 border-t border-slate-100">
-          <div className="flex items-center gap-2.5">
+        <div className="px-4 py-3">
+          <div className="flex items-center gap-2.5 bg-neu rounded-xl p-2.5 neu-inset-sm">
             <img
               src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName}&background=34A0A4&color=fff`}
               alt={user.displayName}

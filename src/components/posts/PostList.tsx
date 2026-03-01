@@ -37,10 +37,10 @@ export default function PostList() {
           <button
             key={tab.value}
             onClick={() => setActiveTab(tab.value)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
               activeTab === tab.value
-                ? 'bg-primary text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                ? 'bg-primary text-white neu-sm'
+                : 'bg-neu text-slate-600 neu-sm hover:neu-inset-sm'
             }`}
           >
             {tab.label}
@@ -54,7 +54,7 @@ export default function PostList() {
       ) : posts.length === 0 ? (
         <EmptyState title="No posts" message="No posts to display right now." />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 md:px-6 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-6 pb-4">
           {posts.map((post) => (
             <PostCard key={post.id} post={post} onClick={() => navigate(`/posts/${post.id}`)} />
           ))}

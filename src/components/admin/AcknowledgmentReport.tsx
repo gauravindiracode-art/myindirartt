@@ -57,14 +57,14 @@ export default function AcknowledgmentReport({ post, onBack }: AcknowledgmentRep
       <p className="text-xs text-slate-400 mb-4">Acknowledgment Report</p>
 
       {/* Progress */}
-      <div className="bg-white border border-slate-100 rounded-xl p-4 mb-4">
+      <div className="bg-neu rounded-2xl p-4 mb-4 neu">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-slate-700">
             {ackCount} of {total} acknowledged
           </span>
           <span className="text-sm font-semibold text-primary">{percent}%</span>
         </div>
-        <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+        <div className="w-full h-2.5 bg-neu rounded-full overflow-hidden neu-inset-sm">
           <div
             className="h-full bg-primary rounded-full transition-all"
             style={{ width: `${percent}%` }}
@@ -73,13 +73,13 @@ export default function AcknowledgmentReport({ post, onBack }: AcknowledgmentRep
       </div>
 
       {/* User list */}
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         {users.map((u) => {
           const acked = respondedUids.has(u.uid);
           return (
             <div
               key={u.uid}
-              className="flex items-center gap-3 p-2.5 bg-white border border-slate-100 rounded-lg"
+              className="flex items-center gap-3 p-2.5 bg-neu rounded-xl neu-sm"
             >
               <img
                 src={u.photoURL || `https://ui-avatars.com/api/?name=${u.displayName}&background=34A0A4&color=fff&size=32`}

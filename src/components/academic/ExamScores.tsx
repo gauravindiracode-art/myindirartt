@@ -28,17 +28,17 @@ export default function ExamScores({ internal, external, total, grade, isCurrent
         </span>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <div className="bg-slate-50 rounded-lg p-2.5 text-center">
+        <div className="bg-neu rounded-lg p-2.5 text-center neu-inset-sm">
           <p className="text-lg font-bold text-slate-800">{internal}<span className="text-xs font-normal text-slate-400">/40</span></p>
           <p className="text-[10px] text-slate-500 mt-0.5">Internal</p>
         </div>
-        <div className="bg-slate-50 rounded-lg p-2.5 text-center">
+        <div className="bg-neu rounded-lg p-2.5 text-center neu-inset-sm">
           <p className="text-lg font-bold text-slate-800">
             {isCurrent ? <span className="text-xs text-slate-400">-</span> : <>{external}<span className="text-xs font-normal text-slate-400">/60</span></>}
           </p>
           <p className="text-[10px] text-slate-500 mt-0.5">External</p>
         </div>
-        <div className="bg-slate-50 rounded-lg p-2.5 text-center">
+        <div className="bg-neu rounded-lg p-2.5 text-center neu-inset-sm">
           <p className="text-lg font-bold text-primary">
             {isCurrent ? <>{internal}<span className="text-xs font-normal text-slate-400">/100</span></> : <>{total}<span className="text-xs font-normal text-slate-400">/100</span></>}
           </p>

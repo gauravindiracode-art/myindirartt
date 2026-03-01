@@ -48,12 +48,12 @@ export default function AcknowledgmentList() {
       ) : filtered.length === 0 ? (
         <EmptyState title="No acknowledgments" message="Nothing to acknowledge right now." />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 md:px-6 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-6 pb-4">
           {filtered.map((post) => (
             <button
               key={post.id}
               onClick={() => setSelectedPost(post)}
-              className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm text-left hover:border-primary-300 transition-colors"
+              className="bg-neu rounded-2xl p-4 text-left neu hover:neu-inset transition-all"
             >
               <div className="flex items-start justify-between gap-2">
                 <div>

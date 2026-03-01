@@ -5,11 +5,11 @@ import type { Reaction, ReactionType } from '../../api/types';
 import type { Unsubscribe } from 'firebase/firestore';
 
 const REACTION_EMOJIS: { type: ReactionType; emoji: string; label: string }[] = [
-  { type: 'like', emoji: '👍', label: 'Like' },
-  { type: 'love', emoji: '❤️', label: 'Love' },
-  { type: 'celebrate', emoji: '🎉', label: 'Celebrate' },
-  { type: 'support', emoji: '🙌', label: 'Support' },
-  { type: 'thumbsup', emoji: '👏', label: 'Applaud' },
+  { type: 'like', emoji: '\u{1F44D}', label: 'Like' },
+  { type: 'love', emoji: '\u{2764}\u{FE0F}', label: 'Love' },
+  { type: 'celebrate', emoji: '\u{1F389}', label: 'Celebrate' },
+  { type: 'support', emoji: '\u{1F64C}', label: 'Support' },
+  { type: 'thumbsup', emoji: '\u{1F44F}', label: 'Applaud' },
 ];
 
 interface EmojiReactionsProps {
@@ -53,10 +53,10 @@ export default function EmojiReactions({
         <button
           key={r.type}
           onClick={() => handleReact(r.type)}
-          className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-colors ${
+          className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs transition-all ${
             myReaction?.type === r.type
-              ? 'bg-primary-50 border-primary-300 text-primary'
-              : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+              ? 'bg-primary-50 text-primary neu-inset-sm'
+              : 'bg-neu text-slate-600 neu-sm hover:neu-inset-sm'
           }`}
         >
           <span>{r.emoji}</span>
@@ -67,7 +67,7 @@ export default function EmojiReactions({
       <div className="relative">
         <button
           onClick={() => setShowPicker(!showPicker)}
-          className="w-7 h-7 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-400 text-sm transition-colors"
+          className="w-7 h-7 flex items-center justify-center rounded-full bg-neu text-slate-400 text-sm transition-all neu-sm hover:neu-inset-sm"
         >
           +
         </button>
@@ -75,12 +75,12 @@ export default function EmojiReactions({
         {showPicker && (
           <>
             <div className="fixed inset-0 z-10" onClick={() => setShowPicker(false)} />
-            <div className="absolute bottom-full left-0 mb-2 z-20 flex gap-1 bg-white rounded-xl shadow-lg border border-slate-200 p-2">
+            <div className="absolute bottom-full left-0 mb-2 z-20 flex gap-1 bg-neu rounded-xl p-2 neu">
               {REACTION_EMOJIS.map((r) => (
                 <button
                   key={r.type}
                   onClick={() => handleReact(r.type)}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 text-lg transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg hover:neu-inset-sm text-lg transition-all"
                   title={r.label}
                 >
                   {r.emoji}

@@ -34,18 +34,18 @@ export default function PolicyManager() {
         <h3 className="text-sm font-semibold text-slate-700">Policies ({policies.length})</h3>
         <button
           onClick={openCreate}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-medium hover:bg-primary-800 transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-medium neu-sm hover:bg-primary-800 transition-all"
         >
           <Plus className="w-3.5 h-3.5" />
           New Policy
         </button>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {policies.map((policy) => (
           <div
             key={policy.id}
-            className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-lg"
+            className="flex items-center gap-3 p-3 bg-neu rounded-xl neu-sm"
           >
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-slate-800 truncate">{policy.title}</p>
@@ -56,14 +56,14 @@ export default function PolicyManager() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => openEdit(policy)}
-                className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400"
+                className="p-1.5 rounded-lg hover:neu-inset-sm text-slate-400 transition-all"
                 title="Edit"
               >
                 <Edit3 className="w-4 h-4" />
               </button>
               <button
                 onClick={() => handleDelete(policy.id)}
-                className="p-1.5 rounded-lg hover:bg-red-50 text-red-400"
+                className="p-1.5 rounded-lg hover:neu-inset-sm text-red-400 transition-all"
                 title="Delete"
               >
                 <Trash2 className="w-4 h-4" />

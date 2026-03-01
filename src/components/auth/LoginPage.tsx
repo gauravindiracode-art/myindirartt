@@ -21,19 +21,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary to-primary-700 flex flex-col items-center justify-center px-6">
+    <div className="min-h-screen bg-neu flex flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-10">
-          <div className="w-20 h-20 bg-gold rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+          <div className="w-20 h-20 bg-gold rounded-2xl flex items-center justify-center mb-4 neu">
             <span className="text-primary text-3xl font-bold">IU</span>
           </div>
-          <h1 className="text-2xl font-bold text-white">Indira University</h1>
-          <p className="text-primary-200 text-sm mt-1">Student & Employee Portal</p>
+          <h1 className="text-2xl font-bold text-slate-800">Indira University</h1>
+          <p className="text-slate-500 text-sm mt-1">Student & Employee Portal</p>
         </div>
 
         {/* Sign-in card */}
-        <div className="bg-white rounded-2xl p-8 shadow-2xl">
+        <div className="bg-neu rounded-2xl p-8 neu">
           <h2 className="text-lg font-semibold text-slate-800 text-center mb-2">
             Welcome
           </h2>
@@ -44,7 +44,7 @@ export default function LoginPage() {
           <button
             onClick={handleSignIn}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:border-primary hover:bg-primary-50 transition-all disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-3 bg-neu rounded-xl px-4 py-3 text-sm font-medium text-slate-700 neu-sm hover:neu-inset-sm transition-all disabled:opacity-50"
           >
             {loading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
@@ -64,7 +64,7 @@ export default function LoginPage() {
           )}
         </div>
 
-        <p className="text-primary-300 text-xs text-center mt-6">
+        <p className="text-slate-400 text-xs text-center mt-6">
           Powered by Indira University IT Department
         </p>
       </div>

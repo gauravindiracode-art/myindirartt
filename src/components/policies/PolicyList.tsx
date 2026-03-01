@@ -34,10 +34,10 @@ export default function PolicyList() {
           <button
             key={dept}
             onClick={() => setActiveDept(dept)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
               activeDept === dept
-                ? 'bg-teal text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                ? 'bg-teal text-white neu-sm'
+                : 'bg-neu text-slate-600 neu-sm hover:neu-inset-sm'
             }`}
           >
             {dept}
@@ -50,12 +50,12 @@ export default function PolicyList() {
       ) : filtered.length === 0 ? (
         <EmptyState title="No policies" message="No policies available for this department." />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 md:px-6 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-6 pb-4">
           {filtered.map((policy) => (
             <button
               key={policy.id}
               onClick={() => setSelectedPolicy(policy)}
-              className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm text-left hover:border-teal-300 transition-colors"
+              className="bg-neu rounded-2xl p-4 text-left neu hover:neu-inset transition-all"
             >
               <div className="flex items-start justify-between gap-2">
                 <div>

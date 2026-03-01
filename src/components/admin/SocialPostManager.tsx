@@ -46,7 +46,7 @@ function SocialPostRow({ post }: { post: SocialPost }) {
   };
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+    <div className="bg-neu rounded-2xl p-4 neu">
       <div className="flex items-start gap-3">
         <img
           src={post.authorPhoto || `https://ui-avatars.com/api/?name=${post.authorName}&background=34A0A4&color=fff&size=32`}
@@ -79,14 +79,14 @@ function SocialPostRow({ post }: { post: SocialPost }) {
 
           <button
             onClick={handleBlock}
-            className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 transition-colors"
+            className="p-1.5 rounded-lg hover:neu-inset-sm text-slate-400 transition-all"
             title={post.blocked ? 'Unblock' : 'Block'}
           >
             {post.blocked ? <ShieldAlert className="w-4 h-4" /> : <ShieldOff className="w-4 h-4" />}
           </button>
           <button
             onClick={handleDelete}
-            className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors"
+            className="p-1.5 rounded-lg hover:neu-inset-sm text-slate-400 hover:text-red-500 transition-all"
             title="Delete"
           >
             <Trash2 className="w-4 h-4" />
@@ -96,10 +96,10 @@ function SocialPostRow({ post }: { post: SocialPost }) {
 
       {/* Expandable reports */}
       {showReports && reports.length > 0 && (
-        <div className="mt-3 pt-3 border-t border-slate-100 space-y-2">
+        <div className="mt-3 pt-3 border-t border-neu-dark/20 space-y-2">
           <p className="text-xs font-medium text-slate-500">Reports</p>
           {reports.map((r) => (
-            <div key={r.uid} className="bg-slate-50 rounded-lg px-3 py-2">
+            <div key={r.uid} className="bg-neu rounded-lg px-3 py-2 neu-inset-sm">
               <p className="text-xs text-slate-600">{r.reason}</p>
               <p className="text-[10px] text-slate-400 mt-0.5">
                 {r.reportedAt.toLocaleDateString()}

@@ -12,7 +12,7 @@ export default function AttendanceView({ percent }: AttendanceViewProps) {
         <span className="text-xs font-medium text-slate-600">Attendance</span>
         <span className={`text-xs font-bold ${textColor}`}>{percent}%</span>
       </div>
-      <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+      <div className="w-full h-2.5 bg-neu rounded-full overflow-hidden neu-inset-sm">
         <div
           className={`h-full rounded-full transition-all ${color}`}
           style={{ width: `${percent}%` }}

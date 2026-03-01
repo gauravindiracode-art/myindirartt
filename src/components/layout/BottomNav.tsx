@@ -33,15 +33,15 @@ export default function BottomNav() {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 safe-area-pb md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-neu neu safe-area-pb md:hidden">
       <div className="flex items-center justify-around h-16">
         {visibleItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
-            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${
               isActive(item.to)
-                ? 'text-primary'
+                ? 'text-primary neu-inset-sm'
                 : 'text-slate-400 hover:text-slate-600'
             }`}
           >

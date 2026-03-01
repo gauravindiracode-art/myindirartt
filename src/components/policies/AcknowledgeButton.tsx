@@ -32,10 +32,10 @@ export default function AcknowledgeButton({ policyId }: { policyId: string }) {
       <button
         onClick={handleAcknowledge}
         disabled={hasAcked || loading}
-        className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+        className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
           hasAcked
-            ? 'bg-green-50 text-green-700 border border-green-200'
-            : 'bg-teal text-white hover:bg-teal-400'
+            ? 'bg-green-50 text-green-700 neu-inset-sm'
+            : 'bg-teal text-white neu-sm hover:bg-teal-400'
         } disabled:opacity-70`}
       >
         <Check className="w-4 h-4" />

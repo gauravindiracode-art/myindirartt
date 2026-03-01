@@ -18,7 +18,7 @@ export default function SubjectList({ subjects, isCurrent }: SubjectListProps) {
       {subjects.map((subject) => {
         const isExpanded = expandedId === subject.id;
         return (
-          <div key={subject.id} className="bg-white border border-slate-100 rounded-xl shadow-sm overflow-hidden">
+          <div key={subject.id} className="bg-neu rounded-2xl overflow-hidden neu">
             <button
               onClick={() => setExpandedId(isExpanded ? null : subject.id)}
               className="w-full flex items-center gap-3 p-4 text-left"
@@ -55,7 +55,7 @@ export default function SubjectList({ subjects, isCurrent }: SubjectListProps) {
             </button>
 
             {isExpanded && (
-              <div className="px-4 pb-4 space-y-4 border-t border-slate-50">
+              <div className="px-4 pb-4 space-y-4 border-t border-neu-dark/20">
                 <ExamScores
                   internal={subject.internal}
                   external={subject.external}

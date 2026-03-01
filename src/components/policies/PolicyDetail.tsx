@@ -20,7 +20,7 @@ export default function PolicyDetail({ policy, onBack }: PolicyDetailProps) {
       </button>
 
       {/* Policy content */}
-      <div className="bg-white border border-slate-100 rounded-xl p-5 md:p-8 shadow-sm">
+      <div className="bg-neu rounded-2xl p-5 md:p-8 neu">
         <span className="px-2 py-0.5 bg-teal-50 text-teal rounded-full text-[10px] font-medium">
           {policy.department}
         </span>
@@ -35,7 +35,7 @@ export default function PolicyDetail({ policy, onBack }: PolicyDetailProps) {
         </div>
 
         {/* Acknowledge */}
-        <div className="mt-6 pt-4 border-t border-slate-100">
+        <div className="mt-6 pt-4 border-t border-neu-dark/20">
           <AcknowledgeButton policyId={policy.id} />
         </div>
       </div>

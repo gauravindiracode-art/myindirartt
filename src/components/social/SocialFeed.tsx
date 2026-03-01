@@ -36,7 +36,7 @@ export default function SocialFeed() {
       {/* Create button */}
       <button
         onClick={() => setShowForm(true)}
-        className="w-full flex items-center gap-3 bg-white border border-slate-100 rounded-xl p-4 shadow-sm text-sm text-slate-400 hover:border-primary-300 transition-colors"
+        className="w-full flex items-center gap-3 bg-neu rounded-2xl p-4 text-sm text-slate-400 neu hover:neu-inset transition-all"
       >
         <img
           src={user?.photoURL || `https://ui-avatars.com/api/?name=${user?.displayName}&background=34A0A4&color=fff&size=40`}

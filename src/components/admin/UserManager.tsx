@@ -4,9 +4,9 @@ import type { AppUser, UserRole } from '../../api/types';
 import LoadingSpinner from '../common/LoadingSpinner';
 
 const ROLE_COLORS: Record<UserRole, string> = {
-  admin: 'bg-red-50 text-red-700 border-red-200',
-  employee: 'bg-blue-50 text-blue-700 border-blue-200',
-  student: 'bg-green-50 text-green-700 border-green-200',
+  admin: 'bg-red-50 text-red-700',
+  employee: 'bg-blue-50 text-blue-700',
+  student: 'bg-green-50 text-green-700',
 };
 
 export default function UserManager() {
@@ -39,11 +39,11 @@ export default function UserManager() {
         Users ({users.length})
       </h3>
 
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {users.map((u) => (
           <div
             key={u.uid}
-            className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-lg"
+            className="flex items-center gap-3 p-3 bg-neu rounded-xl neu-sm"
           >
             <img
               src={u.photoURL || `https://ui-avatars.com/api/?name=${u.displayName}&background=34A0A4&color=fff&size=32`}
@@ -57,7 +57,7 @@ export default function UserManager() {
             <select
               value={u.role}
               onChange={(e) => handleRoleChange(u.uid, e.target.value as UserRole)}
-              className={`px-2 py-1 rounded-lg text-xs font-medium border ${ROLE_COLORS[u.role]} focus:outline-none`}
+              className={`px-2 py-1 rounded-lg text-xs font-medium ${ROLE_COLORS[u.role]} neu-inset-sm focus:outline-none`}
             >
               <option value="student">Student</option>
               <option value="employee">Employee</option>

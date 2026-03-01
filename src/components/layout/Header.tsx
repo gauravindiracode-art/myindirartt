@@ -5,7 +5,7 @@ export default function Header() {
   const { user, signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 bg-primary text-white shadow-md">
+    <header className="sticky top-0 z-50 bg-primary text-white neu">
       <div className="flex items-center justify-between px-4 md:px-6 h-14">
         {/* Mobile branding — hidden on desktop where sidebar shows it */}
         <div className="flex items-center gap-2 md:hidden">

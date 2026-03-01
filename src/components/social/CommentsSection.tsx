@@ -39,7 +39,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
   };
 
   return (
-    <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
+    <div className="mt-3 pt-3 border-t border-neu-dark/20 space-y-3">
       {/* Comment list */}
       {comments.length > 0 && (
         <div className="space-y-2.5">
@@ -56,7 +56,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
           alt={user?.displayName}
           className="w-7 h-7 rounded-full shrink-0"
         />
-        <div className="flex-1 flex items-center gap-1.5 bg-slate-50 rounded-xl px-3 py-1.5">
+        <div className="flex-1 flex items-center gap-1.5 bg-neu rounded-xl px-3 py-1.5 neu-inset-sm">
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -91,7 +91,7 @@ function CommentItem({ comment, postId }: { comment: SocialComment; postId: stri
         className="w-6 h-6 rounded-full mt-0.5"
       />
       <div className="flex-1 min-w-0">
-        <div className="bg-slate-50 rounded-xl px-3 py-2 inline-block max-w-full">
+        <div className="bg-neu rounded-xl px-3 py-2 inline-block max-w-full neu-inset-sm">
           <p className="text-xs font-semibold text-slate-800">{comment.authorName}</p>
           <p className="text-sm text-slate-700 whitespace-pre-wrap break-words">{comment.content}</p>
         </div>
@@ -100,7 +100,7 @@ function CommentItem({ comment, postId }: { comment: SocialComment; postId: stri
       {canDelete && (
         <button
           onClick={() => deleteComment(postId, comment.id)}
-          className="p-1 rounded-lg text-slate-300 hover:text-red-500 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-all mt-1"
+          className="p-1 rounded-lg text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all mt-1"
         >
           <Trash2 className="w-3.5 h-3.5" />
         </button>

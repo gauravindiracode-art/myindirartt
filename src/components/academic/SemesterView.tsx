@@ -43,7 +43,7 @@ export default function SemesterView() {
   return (
     <div className="flex flex-col gap-3 px-4 md:px-6 py-3">
       {/* Program Info Card */}
-      <div className="bg-gradient-to-r from-primary to-primary-600 rounded-xl p-4 md:p-6 text-white">
+      <div className="bg-gradient-to-r from-primary to-primary-600 rounded-2xl p-4 md:p-6 text-white neu">
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 bg-white/20 rounded-xl flex items-center justify-center">
             <GraduationCap className="w-6 h-6" />
@@ -60,11 +60,11 @@ export default function SemesterView() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="bg-primary-50 rounded-xl p-4 text-center">
+        <div className="bg-neu rounded-2xl p-4 text-center neu">
           <p className="text-2xl font-bold text-primary">{cgpa}</p>
           <p className="text-xs text-primary-600 mt-0.5">CGPA</p>
         </div>
-        <div className="bg-teal-50 rounded-xl p-4 text-center">
+        <div className="bg-neu rounded-2xl p-4 text-center neu">
           <p className="text-2xl font-bold text-teal">{avgAttendance}%</p>
           <p className="text-xs text-teal-500 mt-0.5">Avg Attendance</p>
         </div>
@@ -76,10 +76,10 @@ export default function SemesterView() {
           <button
             key={`${sem.year}-${sem.semester}`}
             onClick={() => setSelectedIdx(i)}
-            className={`whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-medium transition-colors ${
+            className={`whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-medium transition-all ${
               selectedIdx === i
-                ? 'bg-primary text-white shadow-sm'
-                : 'bg-slate-100 text-slate-600'
+                ? 'bg-primary text-white neu-sm'
+                : 'bg-neu text-slate-600 neu-sm hover:neu-inset-sm'
             }`}
           >
             {semesterLabel(sem, i)}

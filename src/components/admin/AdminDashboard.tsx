@@ -31,10 +31,10 @@ export default function AdminDashboard() {
             <button
               key={t.value}
               onClick={() => setTab(t.value)}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                 tab === t.value
-                  ? 'bg-primary text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-primary text-white neu-sm'
+                  : 'bg-neu text-slate-600 neu-sm hover:neu-inset-sm'
               }`}
             >
               <Icon className="w-4 h-4" />

@@ -46,13 +46,13 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40">
-      <div className="bg-white w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] overflow-y-auto">
+      <div className="bg-neu w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] overflow-y-auto neu">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-neu-dark/20">
           <h3 className="text-base font-semibold text-slate-800">
             {isEdit ? 'Edit Post' : 'Create Post'}
           </h3>
-          <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400">
+          <button onClick={onClose} className="p-1.5 rounded-lg hover:neu-inset-sm text-slate-400 transition-all">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -64,7 +64,7 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
             onChange={(e) => setContent(e.target.value)}
             placeholder="What's on your mind?"
             rows={4}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none"
+            className="w-full px-4 py-3 rounded-xl bg-neu text-sm neu-inset focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
           />
 
           {error && (
@@ -73,17 +73,17 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-slate-100">
+        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-neu-dark/20">
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 bg-neu neu-sm hover:neu-inset-sm transition-all"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={saving || !content.trim()}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium bg-primary text-white hover:bg-primary-700 disabled:opacity-50 transition-colors"
+            className="px-4 py-2.5 rounded-xl text-sm font-medium bg-primary text-white neu-sm hover:bg-primary-700 disabled:opacity-50 transition-all"
           >
             {saving ? 'Saving...' : isEdit ? 'Update' : 'Publish'}
           </button>
