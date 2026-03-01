@@ -61,17 +61,43 @@ export interface AcknowledgmentResponse {
   acknowledgedAt: Date;
 }
 
-export interface Course {
+export interface CourseTopic {
+  name: string;
+  completed: boolean;
+}
+
+export interface Program {
+  id: string;
+  name: string;
+  fullName: string;
+  totalYears: number;
+}
+
+export interface StudentProfile {
+  program: Program;
+  currentYear: number;
+  currentSemester: 1 | 2;
+}
+
+export interface Subject {
   id: string;
   name: string;
   code: string;
   instructor: string;
+  credits: number;
+  internal: number;
+  external: number;
+  total: number;
+  grade: string;
   attendancePercent: number;
   syllabusPercent: number;
   topics: CourseTopic[];
 }
 
-export interface CourseTopic {
-  name: string;
-  completed: boolean;
+export interface Semester {
+  year: number;
+  semester: 1 | 2;
+  subjects: Subject[];
+  sgpa: number;
+  result: 'pass' | 'current';
 }
