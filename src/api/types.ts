@@ -50,6 +50,15 @@ export interface SocialPost {
   updatedAt: Date | null;
 }
 
+export interface SocialComment {
+  id: string;
+  content: string;
+  authorUid: string;
+  authorName: string;
+  authorPhoto: string;
+  createdAt: Date;
+}
+
 export interface SocialReport {
   uid: string;
   reason: string;

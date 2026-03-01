@@ -12,14 +12,8 @@ import {
   onSnapshot,
   type Unsubscribe,
 } from 'firebase/firestore';
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from 'firebase/storage';
-import { db, storage } from './firebase/config';
-import type { SocialPost, SocialReport, Reaction, ReactionType } from './types';
+import { db } from './firebase/config';
+import type { SocialPost, SocialComment, SocialReport, Reaction, ReactionType } from './types';
 
 const SOCIAL_COL = 'socialPosts';
 
@@ -95,29 +89,6 @@ export async function toggleBlockSocialPost(
   await updateDoc(doc(db, SOCIAL_COL, id), { blocked });
 }
 
-// Media upload / delete
-export async function uploadSocialMedia(
-  uid: string,
-  file: File,
-): Promise<{ url: string; type: 'image' | 'video' }> {
-  const timestamp = Date.now();
-  const path = `social/${uid}/${timestamp}_${file.name}`;
-  const storageRef = ref(storage, path);
-  await uploadBytes(storageRef, file);
-  const url = await getDownloadURL(storageRef);
-  const type = file.type.startsWith('video/') ? 'video' : 'image';
-  return { url, type };
-}
-
-export async function deleteSocialMedia(url: string): Promise<void> {
-  try {
-    const storageRef = ref(storage, url);
-    await deleteObject(storageRef);
-  } catch {
-    // File may already be deleted
-  }
-}
-
 // Reactions (reuses existing Reaction/ReactionType)
 export function subscribeToSocialReactions(
   postId: string,
@@ -139,6 +110,43 @@ export async function setSocialReaction(
   } else {
     await setDoc(reactionRef, { type });
   }
+}
+
+// Comments
+export function subscribeToComments(
+  postId: string,
+  callback: (comments: SocialComment[]) => void,
+): Unsubscribe {
+  const q = query(
+    collection(db, SOCIAL_COL, postId, 'comments'),
+    orderBy('createdAt', 'asc'),
+  );
+  return onSnapshot(q, (snap) => {
+    callback(
+      snap.docs.map((d) => ({
+        id: d.id,
+        content: d.data().content as string,
+        authorUid: d.data().authorUid as string,
+        authorName: d.data().authorName as string,
+        authorPhoto: d.data().authorPhoto as string,
+        createdAt: (d.data().createdAt as { toDate?: () => Date })?.toDate?.() ?? new Date(),
+      })),
+    );
+  });
+}
+
+export async function addComment(
+  postId: string,
+  comment: Omit<SocialComment, 'id' | 'createdAt'>,
+): Promise<void> {
+  await addDoc(collection(db, SOCIAL_COL, postId, 'comments'), {
+    ...comment,
+    createdAt: serverTimestamp(),
+  });
+}
+
+export async function deleteComment(postId: string, commentId: string): Promise<void> {
+  await deleteDoc(doc(db, SOCIAL_COL, postId, 'comments', commentId));
 }
 
 // Reports

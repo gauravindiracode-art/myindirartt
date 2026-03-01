@@ -1,15 +1,8 @@
-import { useState, useRef } from 'react';
-import { X, ImagePlus } from 'lucide-react';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import {
-  createSocialPost,
-  updateSocialPost,
-  uploadSocialMedia,
-  deleteSocialMedia,
-} from '../../api/socialApi';
+import { createSocialPost, updateSocialPost } from '../../api/socialApi';
 import type { SocialPost } from '../../api/types';
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
 interface SocialPostFormProps {
   post?: SocialPost | null;
@@ -18,41 +11,11 @@ interface SocialPostFormProps {
 
 export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
   const { user } = useAuth();
-  const fileRef = useRef<HTMLInputElement>(null);
-
   const [content, setContent] = useState(post?.content ?? '');
-  const [mediaFile, setMediaFile] = useState<File | null>(null);
-  const [mediaPreview, setMediaPreview] = useState<string | null>(post?.mediaURL ?? null);
-  const [mediaType, setMediaType] = useState<'image' | 'video' | null>(post?.mediaType ?? null);
-  const [removeExistingMedia, setRemoveExistingMedia] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
   const isEdit = !!post;
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > MAX_FILE_SIZE) {
-      setError('File size must be under 10 MB');
-      return;
-    }
-
-    setError('');
-    setMediaFile(file);
-    setMediaType(file.type.startsWith('video/') ? 'video' : 'image');
-    setMediaPreview(URL.createObjectURL(file));
-    if (isEdit) setRemoveExistingMedia(true);
-  };
-
-  const clearMedia = () => {
-    setMediaFile(null);
-    setMediaPreview(null);
-    setMediaType(null);
-    if (fileRef.current) fileRef.current.value = '';
-    if (isEdit && post?.mediaURL) setRemoveExistingMedia(true);
-  };
 
   const handleSubmit = async () => {
     if (!user || !content.trim()) return;
@@ -60,45 +23,22 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
     setError('');
 
     try {
-      let mediaURL: string | null = post?.mediaURL ?? null;
-      let finalMediaType: 'image' | 'video' | null = post?.mediaType ?? null;
-
-      // Upload new media if selected
-      if (mediaFile) {
-        const result = await uploadSocialMedia(user.uid, mediaFile);
-        mediaURL = result.url;
-        finalMediaType = result.type;
-      }
-
-      // Remove old media if replaced or cleared
-      if (removeExistingMedia && post?.mediaURL) {
-        await deleteSocialMedia(post.mediaURL);
-        if (!mediaFile) {
-          mediaURL = null;
-          finalMediaType = null;
-        }
-      }
-
       if (isEdit) {
-        await updateSocialPost(post.id, {
-          content: content.trim(),
-          mediaURL,
-          mediaType: finalMediaType,
-        });
+        await updateSocialPost(post.id, { content: content.trim() });
       } else {
         await createSocialPost({
           content: content.trim(),
-          mediaURL,
-          mediaType: finalMediaType,
+          mediaURL: null,
+          mediaType: null,
           authorUid: user.uid,
           authorName: user.displayName,
           authorPhoto: user.photoURL || '',
         });
       }
-
       onClose();
-    } catch {
-      setError('Failed to save post. Please try again.');
+    } catch (err) {
+      console.error('SocialPostForm error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to save post. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -126,39 +66,6 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
             rows={4}
             className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none"
           />
-
-          {/* Media preview */}
-          {mediaPreview && (
-            <div className="relative">
-              {mediaType === 'video' ? (
-                <video src={mediaPreview} controls className="w-full rounded-xl max-h-60" />
-              ) : (
-                <img src={mediaPreview} alt="Preview" className="w-full rounded-xl max-h-60 object-cover" />
-              )}
-              <button
-                onClick={clearMedia}
-                className="absolute top-2 right-2 p-1 bg-black/50 rounded-full text-white hover:bg-black/70"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-
-          {/* File picker */}
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/*,video/*"
-            onChange={handleFileChange}
-            className="hidden"
-          />
-          <button
-            onClick={() => fileRef.current?.click()}
-            className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-500 hover:bg-slate-50 border border-slate-200 transition-colors"
-          >
-            <ImagePlus className="w-4 h-4" />
-            {mediaPreview ? 'Change media' : 'Add photo or video'}
-          </button>
 
           {error && (
             <p className="text-xs text-red-500">{error}</p>

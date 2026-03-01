@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { MoreHorizontal, Pencil, Trash2, ShieldOff, ShieldAlert, Flag } from 'lucide-react';
+import { MoreHorizontal, Pencil, Trash2, ShieldOff, ShieldAlert, Flag, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { deleteSocialPost, toggleBlockSocialPost, deleteSocialMedia } from '../../api/socialApi';
+import { deleteSocialPost, toggleBlockSocialPost } from '../../api/socialApi';
 import { subscribeToSocialReactions, setSocialReaction } from '../../api/socialApi';
 import type { SocialPost } from '../../api/types';
 import EmojiReactions from '../posts/EmojiReactions';
 import ReportModal from './ReportModal';
+import CommentsSection from './CommentsSection';
 
 interface SocialCardProps {
   post: SocialPost;
@@ -16,13 +17,13 @@ export default function SocialCard({ post, onEdit }: SocialCardProps) {
   const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showReport, setShowReport] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const isOwner = user?.uid === post.authorUid;
   const isAdmin = user?.role === 'admin';
 
   const handleDelete = async () => {
     if (!confirm('Delete this post?')) return;
-    if (post.mediaURL) await deleteSocialMedia(post.mediaURL);
     await deleteSocialPost(post.id);
   };
 
@@ -105,29 +106,26 @@ export default function SocialCard({ post, onEdit }: SocialCardProps) {
       {/* Content */}
       <p className="text-sm text-slate-700 whitespace-pre-wrap mb-3">{post.content}</p>
 
-      {/* Media */}
-      {post.mediaURL && post.mediaType === 'image' && (
-        <img
-          src={post.mediaURL}
-          alt="Post media"
-          className="w-full rounded-xl mb-3 max-h-96 object-cover"
-        />
-      )}
-      {post.mediaURL && post.mediaType === 'video' && (
-        <video
-          src={post.mediaURL}
-          controls
-          className="w-full rounded-xl mb-3 max-h-96"
-        />
-      )}
-
-      {/* Footer: Reactions + Report */}
+      {/* Footer: Reactions + Comments toggle + Report */}
       <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
-        <EmojiReactions
-          postId={post.id}
-          subscribeFn={subscribeToSocialReactions}
-          reactFn={setSocialReaction}
-        />
+        <div className="flex items-center gap-2">
+          <EmojiReactions
+            postId={post.id}
+            subscribeFn={subscribeToSocialReactions}
+            reactFn={setSocialReaction}
+          />
+          <button
+            onClick={() => setShowComments(!showComments)}
+            className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-colors ${
+              showComments
+                ? 'bg-primary-50 border-primary-300 text-primary'
+                : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+            }`}
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
+            Comment
+          </button>
+        </div>
         {user && !isOwner && (
           <button
             onClick={() => setShowReport(true)}
@@ -138,6 +136,9 @@ export default function SocialCard({ post, onEdit }: SocialCardProps) {
           </button>
         )}
       </div>
+
+      {/* Comments */}
+      {showComments && <CommentsSection postId={post.id} />}
 
       {showReport && (
         <ReportModal

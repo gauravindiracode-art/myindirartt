@@ -4,7 +4,6 @@ import {
   subscribeToAllSocialPosts,
   toggleBlockSocialPost,
   deleteSocialPost,
-  deleteSocialMedia,
   subscribeToReports,
 } from '../../api/socialApi';
 import type { SocialPost, SocialReport } from '../../api/types';
@@ -43,7 +42,6 @@ function SocialPostRow({ post }: { post: SocialPost }) {
 
   const handleDelete = async () => {
     if (!confirm('Delete this post?')) return;
-    if (post.mediaURL) await deleteSocialMedia(post.mediaURL);
     await deleteSocialPost(post.id);
   };
 
