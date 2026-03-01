@@ -45,8 +45,8 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40">
-      <div className="bg-neu w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[90vh] flex flex-col neu mb-16 sm:mb-0">
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 pb-16 sm:pb-0">
+      <div className="bg-neu w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl max-h-[80dvh] sm:max-h-[90vh] flex flex-col neu">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-neu-dark/20 shrink-0">
           <h3 className="text-base font-semibold text-slate-800">
@@ -73,7 +73,7 @@ export default function SocialPostForm({ post, onClose }: SocialPostFormProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-neu-dark/20 shrink-0 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-neu-dark/20 shrink-0">
           <button
             onClick={onClose}
             className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 bg-neu neu-sm hover:neu-inset-sm transition-all"
