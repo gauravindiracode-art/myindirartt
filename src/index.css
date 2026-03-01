@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* ── Shadow variables (overridden per theme) ── */
+:root {
+  --shadow-dark: #b8bec7;
+  --shadow-light: #ffffff;
+}
+
 @theme {
   --color-primary-50: #e8f0f7;
   --color-primary-100: #c5d9eb;
@@ -34,22 +40,245 @@
   --color-neu-light: #ffffff;
 }
 
+/* ── Neomorphism utilities (use CSS vars for theme override) ── */
 @utility neu {
-  box-shadow: 5px 5px 10px #b8bec7, -5px -5px 10px #ffffff;
+  box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
 }
 
 @utility neu-sm {
-  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
+  box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
 }
 
 @utility neu-inset {
-  box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
 }
 
 @utility neu-inset-sm {
-  box-shadow: inset 2px 2px 4px #b8bec7, inset -2px -2px 4px #ffffff;
+  box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
 }
 
+/* ══════════════════════════════════════════════
+   THEME: Glassmorphism
+   ══════════════════════════════════════════════ */
+[data-theme="glass"] {
+  --shadow-dark: rgba(0, 0, 0, 0.1);
+  --shadow-light: rgba(255, 255, 255, 0.1);
+
+  --color-neu: rgba(255, 255, 255, 0.15);
+  --color-neu-dark: rgba(255, 255, 255, 0.05);
+  --color-neu-light: rgba(255, 255, 255, 0.25);
+
+  --color-primary: #6366f1;
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  --color-teal: #2dd4bf;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-gold: #fbbf24;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+
+  --color-slate-50: rgba(255, 255, 255, 0.05);
+  --color-slate-100: rgba(255, 255, 255, 0.1);
+  --color-slate-200: rgba(255, 255, 255, 0.15);
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+}
+
+[data-theme="glass"] body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%) !important;
+  color: #e2e8f0;
+}
+
+[data-theme="glass"] .bg-neu,
+[data-theme="glass"] .neu,
+[data-theme="glass"] .neu-sm {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ══════════════════════════════════════════════
+   THEME: EdTech
+   ══════════════════════════════════════════════ */
+[data-theme="edtech"] {
+  --shadow-dark: #c7d2e0;
+  --shadow-light: #ffffff;
+
+  --color-neu: #f1f5f9;
+  --color-neu-dark: #c7d2e0;
+  --color-neu-light: #ffffff;
+
+  --color-primary: #4f46e5;
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  --color-teal: #06b6d4;
+  --color-teal-400: #22d3ee;
+  --color-teal-500: #06b6d4;
+  --color-gold: #f59e0b;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+
+  --color-slate-50: #f8fafc;
+}
+
+[data-theme="edtech"] body {
+  background: #f8fafc !important;
+}
+
+/* ══════════════════════════════════════════════
+   THEME: Minimalist
+   ══════════════════════════════════════════════ */
+[data-theme="minimal"] {
+  --shadow-dark: transparent;
+  --shadow-light: transparent;
+
+  --color-neu: #ffffff;
+  --color-neu-dark: #e5e7eb;
+  --color-neu-light: #ffffff;
+
+  --color-primary: #111827;
+  --color-primary-50: #f9fafb;
+  --color-primary-100: #f3f4f6;
+  --color-primary-200: #e5e7eb;
+  --color-primary-300: #d1d5db;
+  --color-primary-400: #9ca3af;
+  --color-primary-500: #6b7280;
+  --color-primary-600: #4b5563;
+  --color-primary-700: #374151;
+  --color-primary-800: #1f2937;
+  --color-primary-900: #111827;
+
+  --color-teal: #10b981;
+  --color-teal-400: #34d399;
+  --color-teal-500: #10b981;
+  --color-gold: #f59e0b;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+
+  --color-slate-50: #fafafa;
+}
+
+[data-theme="minimal"] body {
+  background: #fafafa !important;
+}
+
+[data-theme="minimal"] .neu,
+[data-theme="minimal"] .neu-sm {
+  border: 1px solid #e5e7eb;
+}
+
+[data-theme="minimal"] .neu-inset,
+[data-theme="minimal"] .neu-inset-sm {
+  border: 1px solid #e5e7eb;
+}
+
+/* ══════════════════════════════════════════════
+   THEME: Dark
+   ══════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --shadow-dark: #0a0a0f;
+  --shadow-light: #2a2a35;
+
+  --color-neu: #1a1a2e;
+  --color-neu-dark: #0a0a0f;
+  --color-neu-light: #2a2a35;
+
+  --color-primary: #60a5fa;
+  --color-primary-50: #1e293b;
+  --color-primary-100: #1e3a5f;
+  --color-primary-200: #1e40af;
+  --color-primary-300: #3b82f6;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a5f;
+
+  --color-teal: #2dd4bf;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-gold: #fbbf24;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+
+  --color-slate-50: #0f0f1a;
+  --color-slate-100: #1a1a2e;
+  --color-slate-200: #2a2a3e;
+  --color-slate-300: #4a4a5e;
+  --color-slate-400: #8888a0;
+  --color-slate-500: #a0a0b8;
+  --color-slate-600: #c8c8d8;
+  --color-slate-700: #d8d8e8;
+  --color-slate-800: #e8e8f0;
+  --color-slate-900: #f0f0f8;
+}
+
+[data-theme="dark"] body {
+  background: #0f0f1a !important;
+  color: #e8e8f0;
+}
+
+/* ══════════════════════════════════════════════
+   THEME: Sunset
+   ══════════════════════════════════════════════ */
+[data-theme="sunset"] {
+  --shadow-dark: #c9b99a;
+  --shadow-light: #fff8ee;
+
+  --color-neu: #f5e6d0;
+  --color-neu-dark: #c9b99a;
+  --color-neu-light: #fff8ee;
+
+  --color-primary: #c2410c;
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-200: #fed7aa;
+  --color-primary-300: #fdba74;
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+  --color-primary-800: #9a3412;
+  --color-primary-900: #7c2d12;
+
+  --color-teal: #059669;
+  --color-teal-400: #34d399;
+  --color-teal-500: #10b981;
+  --color-gold: #d97706;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+
+  --color-slate-50: #fdf8f0;
+  --color-slate-100: #f5e6d0;
+  --color-slate-800: #78350f;
+  --color-slate-900: #451a03;
+}
+
+[data-theme="sunset"] body {
+  background: #fdf8f0 !important;
+}
+
+/* ── Base styles ── */
 html, body, #root {
   height: 100%;
   margin: 0;
