@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { subscribeToPosts } from '../../api/postApi';
 import type { Post, PostType } from '../../api/types';
 import PostCard from './PostCard';
-import PostDetail from './PostDetail';
 import LoadingSpinner from '../common/LoadingSpinner';
 import EmptyState from '../common/EmptyState';
 
@@ -14,10 +14,10 @@ const TABS: { label: string; value: PostType | 'all' }[] = [
 ];
 
 export default function PostList() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<PostType | 'all'>('all');
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -28,10 +28,6 @@ export default function PostList() {
     }, filterType);
     return unsub;
   }, [activeTab]);
-
-  if (selectedPost) {
-    return <PostDetail post={selectedPost} onBack={() => setSelectedPost(null)} />;
-  }
 
   return (
     <div>
@@ -60,7 +56,7 @@ export default function PostList() {
       ) : (
         <div className="flex flex-col gap-3 px-4 pb-4">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} onClick={() => setSelectedPost(post)} />
+            <PostCard key={post.id} post={post} onClick={() => navigate(`/posts/${post.id}`)} />
           ))}
         </div>
       )}

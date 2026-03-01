@@ -1,5 +1,5 @@
 import { Home, MessageSquare, FileText, GraduationCap, Shield, ClipboardCheck } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface NavItem {
@@ -20,10 +20,16 @@ const navItems: NavItem[] = [
 
 export default function BottomNav() {
   const { user } = useAuth();
+  const location = useLocation();
 
   const visibleItems = navItems.filter(
     (item) => !item.roles || (user && item.roles.includes(user.role)),
   );
+
+  const isActive = (to: string) => {
+    if (to === '/') return location.pathname === '/';
+    return location.pathname.startsWith(to);
+  };
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 safe-area-pb">
@@ -32,14 +38,11 @@ export default function BottomNav() {
           <NavLink
             key={item.to}
             to={item.to}
-            end={item.to === '/'}
-            className={({ isActive }) =>
-              `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
-                isActive
-                  ? 'text-primary'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`
-            }
+            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
+              isActive(item.to)
+                ? 'text-primary'
+                : 'text-slate-400 hover:text-slate-600'
+            }`}
           >
             {item.icon}
             <span className="text-[10px] font-medium">{item.label}</span>

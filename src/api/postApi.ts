@@ -93,3 +93,16 @@ export function subscribeToReactions(
     callback(snap.docs.map((d) => ({ uid: d.id, type: d.data().type as ReactionType })));
   });
 }
+
+export function subscribeToPost(
+  postId: string,
+  callback: (post: Post | null) => void,
+): Unsubscribe {
+  return onSnapshot(doc(db, POSTS_COL, postId), (snap) => {
+    if (snap.exists()) {
+      callback(toPost(snap.id, snap.data()));
+    } else {
+      callback(null);
+    }
+  });
+}
