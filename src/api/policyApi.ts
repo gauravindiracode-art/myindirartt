@@ -4,6 +4,8 @@ import {
   addDoc,
   getDocs,
   setDoc,
+  updateDoc,
+  deleteDoc,
   query,
   orderBy,
   onSnapshot,
@@ -40,6 +42,17 @@ export async function createPolicy(
     createdAt: serverTimestamp(),
   });
   return ref.id;
+}
+
+export async function updatePolicy(
+  id: string,
+  data: Partial<Omit<Policy, 'id' | 'createdAt'>>,
+): Promise<void> {
+  await updateDoc(doc(db, POLICIES_COL, id), data);
+}
+
+export async function deletePolicy(id: string): Promise<void> {
+  await deleteDoc(doc(db, POLICIES_COL, id));
 }
 
 // Acknowledgments

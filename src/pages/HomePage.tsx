@@ -73,7 +73,7 @@ export default function HomePage() {
           </div>
           <div className="space-y-3">
             {recentPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} onClick={() => navigate('/posts')} />
             ))}
           </div>
         </div>

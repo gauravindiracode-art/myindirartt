@@ -37,8 +37,20 @@ service cloud.firestore {
       allow read: if isAuth();
       allow create, update, delete: if isAdmin();
 
-      // Acknowledgments subcollection
+      // Acknowledgments subcollection (legacy, for policy acks)
       match /acknowledgments/{uid} {
+        allow read: if isAuth();
+        allow create: if isAuth() && request.auth.uid == uid;
+      }
+    }
+
+    // Standalone Acknowledgments collection
+    match /acknowledgments/{ackId} {
+      allow read: if isAuth();
+      allow create, update, delete: if isAdmin();
+
+      // Responses subcollection
+      match /responses/{uid} {
         allow read: if isAuth();
         allow create: if isAuth() && request.auth.uid == uid;
       }

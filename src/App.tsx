@@ -8,6 +8,7 @@ import PostsPage from './pages/PostsPage';
 import PoliciesPage from './pages/PoliciesPage';
 import AcademicsPage from './pages/AcademicsPage';
 import AdminPage from './pages/AdminPage';
+import AcknowledgmentsPage from './pages/AcknowledgmentsPage';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -30,6 +31,12 @@ function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/policies" element={<PoliciesPage />} />
+        <Route
+          path="/acknowledgments"
+          element={
+            user.role !== 'admin' ? <AcknowledgmentsPage /> : <Navigate to="/" replace />
+          }
+        />
         <Route
           path="/academics"
           element={

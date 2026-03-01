@@ -43,6 +43,24 @@ export interface Acknowledgment {
   acknowledgedAt: Date;
 }
 
+export type AcknowledgmentAudience = 'student' | 'employee' | 'both';
+
+export interface AcknowledgmentPost {
+  id: string;
+  title: string;
+  content: string;
+  targetAudience: AcknowledgmentAudience;
+  createdAt: Date;
+  authorName: string;
+}
+
+export interface AcknowledgmentResponse {
+  uid: string;
+  userName: string;
+  userRole: UserRole;
+  acknowledgedAt: Date;
+}
+
 export interface Course {
   id: string;
   name: string;

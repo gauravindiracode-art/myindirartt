@@ -8,14 +8,22 @@ const TYPE_CONFIG = {
   news: { icon: Newspaper, label: 'News', color: 'bg-teal-50 text-teal' },
 };
 
-export default function PostCard({ post }: { post: Post }) {
+interface PostCardProps {
+  post: Post;
+  onClick?: () => void;
+}
+
+export default function PostCard({ post, onClick }: PostCardProps) {
   const config = TYPE_CONFIG[post.type];
   const Icon = config.icon;
 
   const timeAgo = formatTimeAgo(post.createdAt);
 
   return (
-    <article className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+    <article
+      onClick={onClick}
+      className={`bg-white border border-slate-100 rounded-xl p-4 shadow-sm${onClick ? ' cursor-pointer hover:border-primary-300 transition-colors' : ''}`}
+    >
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <img
@@ -33,9 +41,8 @@ export default function PostCard({ post }: { post: Post }) {
         </span>
       </div>
 
-      {/* Content */}
+      {/* Title */}
       <h3 className="text-base font-semibold text-slate-900 mb-1.5">{post.title}</h3>
-      <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">{post.content}</p>
 
       {/* Reactions */}
       <div className="mt-3 pt-3 border-t border-slate-100">
