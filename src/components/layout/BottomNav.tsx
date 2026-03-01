@@ -1,4 +1,4 @@
-import { Home, MessageSquare, FileText, GraduationCap, Shield, ClipboardCheck } from 'lucide-react';
+import { Home, MessageSquare, FileText, GraduationCap, Shield, ClipboardCheck, Users2 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -12,6 +12,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { to: '/', label: 'Home', icon: <Home className="w-5 h-5" /> },
   { to: '/posts', label: 'Posts', icon: <MessageSquare className="w-5 h-5" /> },
+  { to: '/social', label: 'Social', icon: <Users2 className="w-5 h-5" /> },
   { to: '/policies', label: 'Policies', icon: <FileText className="w-5 h-5" /> },
   { to: '/acknowledgments', label: 'Ack', icon: <ClipboardCheck className="w-5 h-5" />, roles: ['student', 'employee'] },
   { to: '/academics', label: 'Academics', icon: <GraduationCap className="w-5 h-5" />, roles: ['student'] },

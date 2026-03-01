@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import { FileText, Users, ScrollText, ClipboardCheck } from 'lucide-react';
+import { FileText, Users, Users2, ScrollText, ClipboardCheck } from 'lucide-react';
 import PostManager from './PostManager';
 import UserManager from './UserManager';
 import PolicyManager from './PolicyManager';
 import AcknowledgmentManager from './AcknowledgmentManager';
+import SocialPostManager from './SocialPostManager';
 
-type AdminTab = 'posts' | 'users' | 'policies' | 'acknowledgments';
+type AdminTab = 'posts' | 'users' | 'policies' | 'acknowledgments' | 'social';
 
 const TABS: { value: AdminTab; label: string; icon: typeof FileText }[] = [
   { value: 'posts', label: 'Posts', icon: FileText },
   { value: 'users', label: 'Users', icon: Users },
   { value: 'policies', label: 'Policies', icon: ScrollText },
   { value: 'acknowledgments', label: 'Ack', icon: ClipboardCheck },
+  { value: 'social', label: 'Social', icon: Users2 },
 ];
 
 export default function AdminDashboard() {
@@ -46,6 +48,7 @@ export default function AdminDashboard() {
       {tab === 'users' && <UserManager />}
       {tab === 'policies' && <PolicyManager />}
       {tab === 'acknowledgments' && <AcknowledgmentManager />}
+      {tab === 'social' && <SocialPostManager />}
     </div>
   );
 }

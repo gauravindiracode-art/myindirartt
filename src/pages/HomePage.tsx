@@ -4,7 +4,7 @@ import { subscribeToPosts } from '../api/postApi';
 import { useAuth } from '../contexts/AuthContext';
 import type { Post } from '../api/types';
 import PostCard from '../components/posts/PostCard';
-import { MessageSquare, FileText, GraduationCap, ChevronRight } from 'lucide-react';
+import { MessageSquare, FileText, GraduationCap, Users2, ChevronRight } from 'lucide-react';
 
 export default function HomePage() {
   const { user } = useAuth();
@@ -42,6 +42,12 @@ export default function HomePage() {
           label="Posts"
           color="bg-primary-50 text-primary"
           onClick={() => navigate('/posts')}
+        />
+        <QuickLink
+          icon={<Users2 className="w-5 h-5" />}
+          label="Social"
+          color="bg-purple-50 text-purple-700"
+          onClick={() => navigate('/social')}
         />
         <QuickLink
           icon={<FileText className="w-5 h-5" />}

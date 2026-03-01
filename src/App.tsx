@@ -10,6 +10,7 @@ import PoliciesPage from './pages/PoliciesPage';
 import AcademicsPage from './pages/AcademicsPage';
 import AdminPage from './pages/AdminPage';
 import AcknowledgmentsPage from './pages/AcknowledgmentsPage';
+import SocialPage from './pages/SocialPage';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -31,6 +32,7 @@ function AppRoutes() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/posts" element={<PostsPage />} />
+        <Route path="/social" element={<SocialPage />} />
         <Route path="/posts/:id" element={<PostDetailPage />} />
         <Route path="/policies" element={<PoliciesPage />} />
         <Route

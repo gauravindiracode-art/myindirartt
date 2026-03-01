@@ -37,6 +37,25 @@ export interface Policy {
   createdAt: Date;
 }
 
+export interface SocialPost {
+  id: string;
+  content: string;
+  mediaURL: string | null;
+  mediaType: 'image' | 'video' | null;
+  authorUid: string;
+  authorName: string;
+  authorPhoto: string;
+  blocked: boolean;
+  createdAt: Date;
+  updatedAt: Date | null;
+}
+
+export interface SocialReport {
+  uid: string;
+  reason: string;
+  reportedAt: Date;
+}
+
 export interface Acknowledgment {
   uid: string;
   userName: string;

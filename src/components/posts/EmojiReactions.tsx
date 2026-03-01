@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { subscribeToReactions, setReaction } from '../../api/postApi';
 import { useAuth } from '../../contexts/AuthContext';
 import type { Reaction, ReactionType } from '../../api/types';
+import type { Unsubscribe } from 'firebase/firestore';
 
 const REACTION_EMOJIS: { type: ReactionType; emoji: string; label: string }[] = [
   { type: 'like', emoji: '👍', label: 'Like' },
@@ -11,14 +12,24 @@ const REACTION_EMOJIS: { type: ReactionType; emoji: string; label: string }[] = 
   { type: 'thumbsup', emoji: '👏', label: 'Applaud' },
 ];
 
-export default function EmojiReactions({ postId }: { postId: string }) {
+interface EmojiReactionsProps {
+  postId: string;
+  subscribeFn?: (postId: string, cb: (reactions: Reaction[]) => void) => Unsubscribe;
+  reactFn?: (postId: string, uid: string, type: ReactionType | null) => Promise<void>;
+}
+
+export default function EmojiReactions({
+  postId,
+  subscribeFn = subscribeToReactions,
+  reactFn = setReaction,
+}: EmojiReactionsProps) {
   const { user } = useAuth();
   const [reactions, setReactions] = useState<Reaction[]>([]);
   const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
-    return subscribeToReactions(postId, setReactions);
-  }, [postId]);
+    return subscribeFn(postId, setReactions);
+  }, [postId, subscribeFn]);
 
   const myReaction = reactions.find((r) => r.uid === user?.uid);
 
@@ -30,7 +41,7 @@ export default function EmojiReactions({ postId }: { postId: string }) {
   const handleReact = async (type: ReactionType) => {
     if (!user) return;
     const newType = myReaction?.type === type ? null : type;
-    await setReaction(postId, user.uid, newType);
+    await reactFn(postId, user.uid, newType);
     setShowPicker(false);
   };
 
