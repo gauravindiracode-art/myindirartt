@@ -9,7 +9,7 @@ interface PolicyDetailProps {
 
 export default function PolicyDetail({ policy, onBack }: PolicyDetailProps) {
   return (
-    <div className="px-4 py-3">
+    <div className="px-4 md:px-6 py-3 md:py-6 max-w-3xl mx-auto">
       {/* Back button */}
       <button
         onClick={onBack}
@@ -20,7 +20,7 @@ export default function PolicyDetail({ policy, onBack }: PolicyDetailProps) {
       </button>
 
       {/* Policy content */}
-      <div className="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-5 md:p-8 shadow-sm">
         <span className="px-2 py-0.5 bg-teal-50 text-teal rounded-full text-[10px] font-medium">
           {policy.department}
         </span>

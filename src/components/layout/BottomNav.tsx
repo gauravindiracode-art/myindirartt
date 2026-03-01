@@ -32,8 +32,8 @@ export default function BottomNav() {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 safe-area-pb">
-      <div className="flex items-center justify-around max-w-lg mx-auto h-16">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 safe-area-pb md:hidden">
+      <div className="flex items-center justify-around h-16">
         {visibleItems.map((item) => (
           <NavLink
             key={item.to}

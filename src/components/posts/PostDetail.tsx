@@ -18,7 +18,7 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
   const Icon = config.icon;
 
   return (
-    <div className="px-4 py-3">
+    <div className="px-4 md:px-6 py-3 md:py-6 max-w-3xl mx-auto">
       <button
         onClick={onBack}
         className="flex items-center gap-1.5 text-sm text-primary font-medium mb-4"
@@ -27,7 +27,7 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
         Back to posts
       </button>
 
-      <div className="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-100 rounded-xl p-5 md:p-8 shadow-sm">
         {/* Type badge */}
         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${config.color}`}>
           <Icon className="w-3 h-3" />
@@ -48,8 +48,8 @@ export default function PostDetail({ post, onBack }: PostDetailProps) {
         </div>
 
         {/* Content */}
-        <h2 className="text-xl font-bold text-slate-900 mb-3">{post.title}</h2>
-        <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-3">{post.title}</h2>
+        <div className="text-sm md:text-base text-slate-700 leading-relaxed whitespace-pre-wrap">
           {post.content}
         </div>
 

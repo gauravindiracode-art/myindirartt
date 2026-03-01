@@ -14,7 +14,7 @@ export default function SubjectList({ subjects, isCurrent }: SubjectListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {subjects.map((subject) => {
         const isExpanded = expandedId === subject.id;
         return (

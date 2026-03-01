@@ -18,8 +18,8 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState<AdminTab>('posts');
 
   return (
-    <div className="px-4 py-3">
-      <h2 className="text-lg font-bold text-slate-800 mb-3">Admin Dashboard</h2>
+    <div className="px-4 md:px-6 py-3 md:py-6">
+      <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-3">Admin Dashboard</h2>
 
       {/* Tab switcher */}
       <div className="flex gap-2 mb-4 overflow-x-auto">

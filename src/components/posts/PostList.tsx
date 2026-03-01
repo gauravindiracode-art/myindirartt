@@ -32,7 +32,7 @@ export default function PostList() {
   return (
     <div>
       {/* Filter Tabs */}
-      <div className="flex gap-2 px-4 py-3 overflow-x-auto">
+      <div className="flex gap-2 px-4 md:px-6 py-3 overflow-x-auto">
         {TABS.map((tab) => (
           <button
             key={tab.value}
@@ -54,7 +54,7 @@ export default function PostList() {
       ) : posts.length === 0 ? (
         <EmptyState title="No posts" message="No posts to display right now." />
       ) : (
-        <div className="flex flex-col gap-3 px-4 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 md:px-6 pb-4">
           {posts.map((post) => (
             <PostCard key={post.id} post={post} onClick={() => navigate(`/posts/${post.id}`)} />
           ))}

@@ -38,9 +38,9 @@ export default function AcknowledgmentList() {
 
   return (
     <div>
-      <div className="px-4 py-3">
-        <h2 className="text-lg font-bold text-slate-800">Acknowledgments</h2>
-        <p className="text-xs text-slate-400 mt-0.5">Read and acknowledge important notices</p>
+      <div className="px-4 md:px-6 py-3 md:pt-6">
+        <h2 className="text-lg md:text-xl font-bold text-slate-800">Acknowledgments</h2>
+        <p className="text-xs md:text-sm text-slate-400 mt-0.5">Read and acknowledge important notices</p>
       </div>
 
       {loading ? (
@@ -48,7 +48,7 @@ export default function AcknowledgmentList() {
       ) : filtered.length === 0 ? (
         <EmptyState title="No acknowledgments" message="Nothing to acknowledge right now." />
       ) : (
-        <div className="flex flex-col gap-3 px-4 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 md:px-6 pb-4">
           {filtered.map((post) => (
             <button
               key={post.id}
